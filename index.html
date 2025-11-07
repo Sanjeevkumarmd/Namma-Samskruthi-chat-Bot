@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karnataka AI Companion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Noto Sans', sans-serif;
+      }
+      html:lang(kn-IN) {
+        font-family: 'Noto Sans Kannada', sans-serif;
+      }
+
+      @keyframes karnataka-title-color {
+        0%, 100% { color: #FFCD00; } /* Yellow */
+        50% { color: #C8102E; } /* Red */
+      }
+
+      @keyframes flag-wave {
+        0% { text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
+        25% { text-shadow: -2px 2px 4px rgba(0,0,0,0.6); }
+        50% { text-shadow: -2px -2px 4px rgba(0,0,0,0.6); }
+        75% { text-shadow: 2px -2px 4px rgba(0,0,0,0.6); }
+        100% { text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
+      }
+      .animate-flag-wave {
+        animation: flag-wave 3s linear infinite, karnataka-title-color 4s ease-in-out infinite;
+      }
+
+      @keyframes background-pan {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .animate-background-pan {
+        background-size: 200% 200%;
+        animation: background-pan 10s ease-in-out infinite;
+      }
+      
+      @keyframes title-background-pan {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .animate-title-background {
+        background-size: 400% 400%;
+        animation: title-background-pan 15s ease-in-out infinite;
+      }
+
+      @keyframes ripple {
+        0% { box-shadow: 0 0 0 0 rgba(255, 205, 0, 0.7), 0 0 0 0 rgba(200, 16, 46, 0.5); }
+        70% { box-shadow: 0 0 0 15px rgba(255, 205, 0, 0), 0 0 0 8px rgba(200, 16, 46, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 205, 0, 0), 0 0 0 0 rgba(200, 16, 46, 0); }
+      }
+      .animate-ripple-bot {
+          animation: ripple 2s infinite cubic-bezier(0.65, 0, 0.34, 1);
+      }
+
+      @keyframes liquid-fill {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .animate-liquid-fill {
+        background: linear-gradient(90deg, #FFCD00, #C8102E, #FFCD00);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: liquid-fill 3s ease-in-out infinite;
+      }
+
+      @keyframes fade-out-screen {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+      .animate-fade-out-screen {
+        animation: fade-out-screen 0.3s ease-in-out forwards;
+      }
+      @keyframes fade-in-screen {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .animate-fade-in-screen {
+        animation: fade-in-screen 0.3s ease-in-out forwards;
+      }
+      
+      @keyframes icon-pop-in {
+        0% { transform: scale(0.5); opacity: 0; }
+        80% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .animate-icon-pop-in {
+        animation: icon-pop-in 0.3s ease-out;
+      }
+
+      @keyframes button-pop-in {
+        0% { transform: scale(0.8); }
+        80% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+      .animate-button-pop-in {
+        animation: button-pop-in 0.3s ease-out forwards;
+      }
+
+      @keyframes pulse-red {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+        }
+        70% {
+            transform: scale(1.1);
+            box-shadow: 0 0 5px 10px rgba(239, 68, 68, 0);
+        }
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+        }
+      }
+      .animate-pulse-red {
+          animation: pulse-red 1.5s infinite;
+      }
+
+      /* Custom scrollbar for webkit browsers */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: rgba(156, 163, 175, 0.5);
+        border-radius: 20px;
+        border: 3px solid transparent;
+      }
+      .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: rgba(107, 114, 128, 0.7);
+      }
+
+      /* Custom horizontal scrollbar for webkit browsers */
+      .custom-scrollbar-horizontal::-webkit-scrollbar {
+        height: 4px;
+      }
+      .custom-scrollbar-horizontal::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar-horizontal::-webkit-scrollbar-thumb {
+        background-color: rgba(156, 163, 175, 0.4);
+        border-radius: 20px;
+      }
+      .dark .custom-scrollbar-horizontal::-webkit-scrollbar-thumb {
+        background-color: rgba(107, 114, 128, 0.6);
+      }
+
+      /* Feedback Toast Animation */
+      @keyframes toast-in-out {
+        0% {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        15%, 85% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+      }
+      .animate-toast-in-out {
+        animation: toast-in-out 3s ease-in-out forwards;
+      }
+
+      /* Subtle Fade-in for Timestamp and suggestion chips */
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .animate-fade-in {
+        animation: fade-in 0.5s ease-out forwards;
+      }
+
+      @keyframes fade-in-subtle {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-subtle {
+        animation: fade-in-subtle 0.5s ease-out forwards;
+      }
+
+      @keyframes fade-in-bottom {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-bottom {
+        animation: fade-in-bottom 0.5s ease-out forwards;
+      }
+
+      /* History Panel Animation */
+      @keyframes slide-in-left {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(0); }
+      }
+      .animate-slide-in-left {
+        animation: slide-in-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+      @keyframes slide-out-left {
+        from { transform: translateX(0); }
+        to { transform: translateX(-100%); }
+      }
+      .animate-slide-out-left {
+        animation: slide-out-left 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+      }
+      
+      /* Visual Prompt Card Shimmer */
+      @keyframes shimmer {
+        0% { background-position: -100% 0; }
+        100% { background-position: 100% 0; }
+      }
+      .animate-shimmer {
+        background: linear-gradient(90deg, transparent 20%, rgba(255,255,255,0.1) 50%, transparent 80%);
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite linear;
+      }
+
+      /* Feedback Icon Pop */
+      @keyframes icon-pop {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.25); }
+      }
+      .animate-icon-pop {
+        animation: icon-pop 0.3s ease-in-out;
+      }
+
+      /* Marquee Animation for Visual Prompts */
+      @keyframes marquee {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-50%); }
+      }
+      .animate-marquee {
+        animation: marquee 40s linear infinite;
+      }
+
+      /* Thinking text pulse */
+      @keyframes text-pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      .animate-text-pulse {
+        animation: text-pulse 1.2s ease-in-out infinite;
+      }
+
+      /* Placeholder fade animation */
+      @keyframes fade-in-out-placeholder {
+        0%, 100% {
+          opacity: 0;
+        }
+        20%, 80% {
+          opacity: 1;
+        }
+      }
+      .animate-fade-in-out-placeholder {
+        animation: fade-in-out-placeholder 4s ease-in-out forwards;
+      }
+
+      /* Suggestion Roller Animation */
+      @keyframes suggestion-roll-in {
+        from {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .animate-suggestion-roll-in {
+        animation: suggestion-roll-in 0.5s ease-out forwards;
+      }
+      @keyframes suggestion-roll-out {
+        from {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+      }
+      .animate-suggestion-roll-out {
+        animation: suggestion-roll-out 0.5s ease-out forwards;
+      }
+
+      /* Placeholder Animation */
+      @keyframes slide-fade-in-out-right {
+        0% {
+          opacity: 0;
+          transform: translateX(-15px);
+        }
+        20%, 80% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(15px);
+        }
+      }
+      .animate-slide-fade-in-out-right {
+        animation: slide-fade-in-out-right 4s ease-in-out infinite;
+      }
+
+      /* Chat Message Animations */
+      @keyframes slide-in-left-chat {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .animate-slide-in-left-chat {
+        animation: slide-in-left-chat 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+
+      @keyframes slide-in-right-chat {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .animate-slide-in-right-chat {
+        animation: slide-in-right-chat 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+
+      /* Explore Screen Card Animation */
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-up {
+        /* Set initial state for animation */
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fade-in-up 0.5s ease-out forwards;
+      }
+
+      /* New welcome text animation */
+      @keyframes fade-in-up-slow {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .animate-subtitle {
+        animation: fade-in-up-slow 2s ease-out 0.8s forwards;
+        opacity: 0; /* Initial state */
+      }
+      
+      @keyframes slide-in-from-left {
+        from {
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+      }
+      .animate-description {
+        animation: slide-in-from-left 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2s forwards;
+        opacity: 0; /* Initial state */
+      }
+
+      /* New bot flag animation */
+      @keyframes bot-flag-cycle {
+        0% { background-position: 0% 0%; }
+        50% { background-position: 0% 100%; }
+        100% { background-position: 0% 0%; }
+      }
+
+      .bot-3d-interactive {
+        --rotateX: 0deg;
+        --rotateY: 0deg;
+        transform: perspective(1000px) rotateX(var(--rotateX)) rotateY(var(--rotateY));
+        transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        background: linear-gradient(180deg, #FFCD00, #C8102E, #FFCD00); /* Top yellow, bottom red, loops */
+        background-size: 100% 300%;
+        animation: bot-flag-cycle 8s linear infinite;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2), 0 3px 3px rgba(0,0,0,0.23), inset 0 0 15px rgba(255,255,255,0.2);
+      }
+
+      /* Typing Indicator Animation */
+      @keyframes bounce-dot {
+        0%, 80%, 100% { transform: scale(0); }
+        40% { transform: scale(1.0); }
+      }
+      .dot-1 { animation: bounce-dot 1.4s infinite ease-in-out both; animation-delay: -0.32s; }
+      .dot-2 { animation: bounce-dot 1.4s infinite ease-in-out both; animation-delay: -0.16s; }
+      .dot-3 { animation: bounce-dot 1.4s infinite ease-in-out both; }
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

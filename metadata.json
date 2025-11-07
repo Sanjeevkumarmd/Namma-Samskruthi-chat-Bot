@@ -1,0 +1,8 @@
+{
+  "name": "Namma Heritage BOT🔹 ",
+  "description": "An AI-powered chatbot celebrating the heritage of Karnataka, offering multilingual support, dynamic themes, and accessibility features for a rich, interactive experience.",
+  "requestFramePermissions": [
+    "microphone",
+    "geolocation"
+  ]
+}
