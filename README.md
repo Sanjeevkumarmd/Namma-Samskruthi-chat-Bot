@@ -47,3 +47,5 @@ This project was created to:
 ## 👤 Developed By
 **Name:** *Sanjeev Kumar (Sanz)*  
 **Role:** AI & ML Engineering Student  
+
+To run the chatbot: download the project and open the file `index.html` in Chrome.
