@@ -1,4 +1,8 @@
-![Samskruthi AI Banner](banner.png)
+<p align="center">
+  <img src="banner.png" alt="Samskruthi AI Banner" width="850">
+</p>
+
+<br>
 
 # Namma Samskruthi ChatBot 🎙️✨
 
