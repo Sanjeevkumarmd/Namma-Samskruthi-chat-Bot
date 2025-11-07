@@ -1,3 +1,5 @@
+![Samskruthi AI Banner](banner.png)
+
 # Namma Samskruthi ChatBot 🎙️✨
 
 A simple and interactive chatbot that provides information about Karnataka’s inscriptions, archaeological sites, and cultural heritage.  
